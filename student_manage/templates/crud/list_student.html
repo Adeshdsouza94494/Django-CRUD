@@ -1,0 +1,86 @@
+{% extends 'crud/base.html' %}
+
+{% block content1 %}  
+
+<div class="container my-5">
+<table class="table  table-hover ">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Branch</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for st in student %}
+            <tr>
+                <td>{{st.id}}</td>
+                <td>{{st.firstname}}</td>
+                <td>{{st.lastname}}</td>
+                <td>{{st.email}}</td>
+                <td>{{st.phone}}</td>
+                <td>{{st.branch}}</td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#viewModal{{st.id}}">View</button>
+                    <!-- Modal -->
+<div class="modal fade" id="viewModal{{st.id}}" tabindex="-1" aria-labelledby="viewModalLabel{{st.id}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="viewModalLabel{{st.id}}">Student Information </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p> <strong>Id : </strong>{{st.id}}</p>
+            <p><strong>First Name :</strong> {{st.firstname}}</p>
+            <p><strong>Last Name : </strong>{{st.lastname}}</p>
+            <p><strong>Email :</strong> {{st.email}}</p>
+            <p><strong>Phone: </strong>{{st.phone}}</p>
+            <p><strong>Branch: </strong>{{st.branch}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                </td>
+                <td><button class="btn btn-sm btn-secondary"><a href="/update/{{st.id}}">Update</a></button></td>
+                <td>
+                  <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteModal{{st.id}}">Delete</button>
+                  <!-- model for delete button  -->
+
+                  <div class="modal fade" id="deleteModal{{st.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{st.id}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel{{st.id}}">Confirm Deletion</h5>
+    
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete the student?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="{% url 'delete' st.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </td>
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endblock %}
