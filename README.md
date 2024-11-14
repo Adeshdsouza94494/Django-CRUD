@@ -1,6 +1,6 @@
 # Student Management System
 
-## live project  : https://killer123.pythonanywhere.com/
+ live project  : https://killer123.pythonanywhere.com/
 
 ## Overview
 A web application for managing student records, with full CRUD functionality to view, add, edit, and delete student information.
