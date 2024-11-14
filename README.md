@@ -23,4 +23,4 @@ Install dependencies, and start the Django server.
 ## Usage
 Admins can manage student data through a simple and efficient interface, performing all CRUD operations.
 
-## live project  : https://killer123.pythonanywhere.com/
+ live project  : https://killer123.pythonanywhere.com/
